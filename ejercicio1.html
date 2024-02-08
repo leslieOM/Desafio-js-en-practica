@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 1</title>
+</head>
+
+<body>
+    <div>
+        <div style="width: 40%;margin: 0 auto">
+            <h2>
+                Escríbenos !!!
+            </h2>
+            <div id="resultado" style="color:green;font-style: italic">
+            </div>
+            <form id="formulario">
+                <div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>
+                            Nombre completo
+                        </label>
+                        <input id="nombre" type="text">
+                        <p id="errorNombre" style="color:red;font-style: italic;"></p>
+                    </div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>
+                            Asunto
+                        </label>
+                        <input id="asunto" type="text">
+                        <p id="errorAsunto" style="color:red;font-style: italic;"></p>
+                    </div>
+                </div>
+                <div style="display: flex;flex-direction: column;">
+                    <label>
+                        Mensaje
+                    </label>
+                    <textarea id="mensaje"></textarea>
+                    <p id="errorMensaje" style="color:red;font-style: italic;"></p>
+                </div>
+                <div>
+                    <button id="botton" type="submit">
+                        Envíar mensaje
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.getElementById('formulario').addEventListener('submit', function (event) {
+                event.preventDefault();
+                submitForm(event)
+            });
+
+            function submitForm() {
+                let nombre = document.getElementById('nombre').value.trim();
+                let asunto = document.getElementById('asunto').value.trim();
+                let mensaje = document.getElementById('mensaje').value.trim();
+
+                // Expresión regular para caracteres alfabéticos de la "A-a" hasta la "Z-z"
+                let regex = /^[a-zA-Z]+$/;
+
+                // Validar nombre
+                if (!regex.test(nombre)) {
+                    event.preventDefault(); // Evitar el envío del formulario
+                    document.getElementById('errorNombre').innerText = "El nombre es requerido.";
+                    document.getElementById('errorNombre').style.display = 'block';
+                } else {
+                    document.getElementById('errorNombre').innerText = "";
+                }
+
+                // Validar asunto
+                if (!regex.test(asunto)) {
+                    event.preventDefault(); // Evitar el envío del formulario
+                    document.getElementById('errorAsunto').innerText = "El asunto es requerido.";
+                    document.getElementById('errorAsunto').style.display = 'block';
+                } else {
+                    document.getElementById('errorAsunto').innerText = "";
+                }
+
+                // Validar mensaje
+                if (!regex.test(mensaje)) {
+                    event.preventDefault(); // Evitar el envío del formulario
+                    document.getElementById('errorMensaje').innerText = "El mensaje es requerido.";
+                    document.getElementById('errorMensaje').style.display = 'block';
+                } else {
+                    document.getElementById('errorMensaje').innerText = "";
+                }
+
+                // Mostrar mensaje de éxito o error
+                if (regex.test(nombre) && regex.test(asunto) && regex.test(mensaje)) {
+                    document.getElementById('resultado').innerText = "¡Mensaje enviado con éxito!";
+                    document.getElementById('resultado').style.color = 'green';
+                } else {
+                    document.getElementById('resultado').innerText = "Por favor, corrija los errores antes de enviar el formulario.";
+                    document.getElementById('resultado').style.color = 'red';
+                }
+            };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 3</title>
+</head>
+
+<body>
+    <div>
+        <div>
+            <h2>
+                Resultado: <span class="resultado"></span>
+            </h2>
+            <div>
+                <div>
+                    <div>
+                        <label for="">Valor 1</label>
+                        <input id="valor1" type="text">
+                    </div>
+                    <div>
+                        <label for="">Valor 2</label>
+                        <input id="valor2" type="text">
+                    </div>
+                    <div style="display: flex">
+                        <button id="btn-sumar" onclick="sumar()" type="button">
+                            Sumar
+                        </button>
+                        <button id="btn-restar" onclick="restar()" type="button">
+                            Restar
+                        </button>
+                    </div>
+                    <div class="resultado" id="resultado"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function sumar() {
+          let num1 = parseFloat(document.getElementById('valor1').value) || 0;
+          let num2 = parseFloat(document.getElementById('valor2').value) || 0;
+
+          let resultado = num1 + num2;
+          mostrarResultado(resultado);
+        }
+
+        function restar() {
+          let num1 = parseFloat(document.getElementById('valor1').value) || 0;
+          let num2 = parseFloat(document.getElementById('valor2').value) || 0;
+
+          let resultado = Math.max(num1 - num2, 0); // Si el resultado es negativo, mostrara 0
+          mostrarResultado(resultado);
+        }
+
+        function mostrarResultado(resultado) {
+          document.getElementById('resultado').textContent = "Resultado: " + resultado;
+        }
+    </script>
+</body>
+
+</html>
